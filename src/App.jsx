@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import './App.css'
-import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Outlet, useOutletContext } from 'react-router-dom'
 
 
 function Layout() {
-  return <Outlet />
+  const [count, setCount] = useState(0)
+  return <Outlet context={{ count: count, setCount: setCount }} />
 }
 
 
 function Home() {
-  const [count, setCount] = useState(0)
+  const { count, setCount } = useOutletContext()
   return (
     <>
       <h1>Home-page</h1>
